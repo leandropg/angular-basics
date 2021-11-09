@@ -1,0 +1,22 @@
+<h3>Add {{ airplaneForm.company }}</h3>        
+<hr>
+<form (ngSubmit)="add()">
+    <input
+        type="text"
+        placeholder="Company"
+        name="company"
+        [(ngModel)]="airplaneForm.company"
+        
+    />
+    <!-- [value] = "newAirplane.company"
+        (input)="changeCompany($event)" -->
+    <input
+        type="text"
+        placeholder="Reference"
+        name="reference"
+        [(ngModel)]="airplaneForm.reference"
+    />
+    <!-- [value] = "newAirplane.reference"
+        (input)="changeReference($event)" -->
+    <button type="submit">Add</button>
+</form>
