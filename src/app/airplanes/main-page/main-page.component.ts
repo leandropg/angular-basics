@@ -16,4 +16,10 @@ export class MainPageComponent {
     this.listAirplanes.push({ company: 'Airbus', reference: 'A320'});
     this.listAirplanes.push({ company: 'Boeing', reference: '787'});
   }
+
+  public addNewAirplane(newAirplane: Airplane) : void {
+
+    // Add New Airplane
+    this.listAirplanes.push(newAirplane);
+  }
 }

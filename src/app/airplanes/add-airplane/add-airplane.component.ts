@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Airplane } from '../interfaces/airplane.interface';
 
 @Component({
@@ -7,9 +7,6 @@ import { Airplane } from '../interfaces/airplane.interface';
 })
 export class AddAirplaneComponent {
 
-  @Input('listAirplanes')
-  listAirplanes: Airplane[] = [];
-
   // Form data
   airplaneForm: Airplane = {
 
@@ -17,11 +14,14 @@ export class AddAirplaneComponent {
     reference: ''
   }
 
+  // Create Emmiter
+  @Output()
+  onNewAirplane: EventEmitter<Airplane> = new EventEmitter();
+
   constructor() { }
 
-  add() {
+  addNewAirplane() {
 
-    console.log();
     if (this.airplaneForm.company.trim().length != 0) {
 
       // Obtain data new Airplane
@@ -30,23 +30,14 @@ export class AddAirplaneComponent {
         company: this.airplaneForm.company,
         reference: this.airplaneForm.reference
       }
-      
-      // Add new Airplane
-      this.listAirplanes.push(newAirplane);
 
+      // Emit New Airplane
+      this.onNewAirplane.emit(newAirplane);
+      
       // Clear Form
       this.airplaneForm.company = '';
       this.airplaneForm.reference = '';
     }
     return;
   }
-
-  /*changeCompany(event: any) {
-
-    console.log(event.target.value);
-  }
-
-  changeReference(event: any) {
-
-  }*/
 }
