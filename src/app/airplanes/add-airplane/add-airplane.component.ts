@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Airplane } from '../interfaces/airplane.interface';
+import { AirplaneService } from '../services/airplanes.service';
 
 @Component({
   selector: 'app-add-airplane',
@@ -15,10 +16,10 @@ export class AddAirplaneComponent {
   }
 
   // Create Emmiter
-  @Output()
-  onNewAirplane: EventEmitter<Airplane> = new EventEmitter();
+  /*@Output()
+  onNewAirplane: EventEmitter<Airplane> = new EventEmitter();*/
 
-  constructor() { }
+  constructor(private airplaneService: AirplaneService) { }
 
   addNewAirplane() {
 
@@ -32,7 +33,8 @@ export class AddAirplaneComponent {
       }
 
       // Emit New Airplane
-      this.onNewAirplane.emit(newAirplane);
+      //this.onNewAirplane.emit(newAirplane);
+      this.airplaneService.addNewAirplane(newAirplane);
       
       // Clear Form
       this.airplaneForm.company = '';

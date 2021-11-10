@@ -1,20 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Airplane } from '../interfaces/airplane.interface';
+import { AirplaneService } from '../services/airplanes.service';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html'
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
 
-  // List Airplanes
-  listAirplanes: Airplane[] = [];
+  constructor(private airplaneService: AirplaneService) {
 
-  constructor() {
+  }
 
-    // Fill Sample Data
-    this.listAirplanes.push({ company: 'Airbus', reference: 'A320'});
-    this.listAirplanes.push({ company: 'Boeing', reference: '787'});
+  // Implement Getter --> Avoid create local variable
+  get listAirplanes(): Airplane[] {
+
+    return this.airplaneService.listAirplanes;
+  }
+  
+  ngOnInit(): void {
+  
   }
 
   public addNewAirplane(newAirplane: Airplane) : void {
